@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --job-name=featureCounts
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=2G
+#SBATCH --time=1:00:00
+#SBATCH --output=/lisc/data/scratch/course/2025w300106/filimonova/logs/featureCounts.%j.log
+#SBATCH --error=/lisc/data/scratch/course/2025w300106/filimonova/logs/featureCounts.%j.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=daria.filimonova@univie.ac.at
+
+#checking the quality of read assignment with stringtie (previous step) as if we don´t have reference genome
+
+### ENVIRONMENT
+module load Subread
+module list
+
+### VARIABLES
+#genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/GeneModelsGeneratedStringTie.gtf" forgot to limit to multi-exon
+genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/filtered_gene_models.gtf"
+aligned_reads="/lisc/data/scratch/course/2025w300106/filimonova/fromina_for_features/filtered.bam"
+
+### EXECUTION
+
+featureCounts -a $genemodels -t exon -g gene_id -s 2 --primary -T 4 -o ./results/fromina_check_annot.counts_prim_s2.tsv $aligned_reads
+
+# for some reason my reads are not paired (need to look up dataset) so i´m removing -p
+# count only primary alignments (avoid multimappers)
+# i hypothesise the library is reverse stranded until proven othervise
+
