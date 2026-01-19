@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH --job-name=trimmomatic
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=20G
+#SBATCH --time=12:00:00
+#SBATCH --output=/lisc/data/scratch/course/2025w300106/filimonova/logs/trimmomatic.%j.log
+#SBATCH --error=/lisc/data/scratch/course/2025w300106/filimonova/logs/trimmomatic.%j.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=daria.filimonova@univie.ac.at
+
+#trimming the reads for better quality/remove adapters
+
+module load Trimmomatic/0.40-Java-17
+
+trimmomatic PE -threads 4 -summary ./summary/SRR23260644_summary.txt -baseout ./result/SRR23260644 ../SRR23260644_1.fastq ../SRR23260644_2.fastq ILLUMINACLIP:trim_adapters.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:20
+
