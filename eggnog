@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --job-name=featureCounts
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=32G
+#SBATCH --time=12:00:00
+#SBATCH --output=/lisc/data/scratch/course/2025w300106/filimonova/logs/eggnog.%j.log
+#SBATCH --error=/lisc/data/scratch/course/2025w300106/filimonova/logs/eggnog.%j.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=daria.filimonova@univie.ac.at
+
+#annotating our proteome using diamond
+
+### ENVIRONMENT
+module load eggnogmapper/2.1.13-foss-2024a
+module list
+
+### Variables
+proteins='/lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/Nv2_proteins.fasta'
+ 
+### EXECUTION
+
+emapper.py -i $proteins --cpu 16 --itype proteins --go_evidence experimental -m diamond --excel -o eggnog_annot --override --output_dir /lisc/data/scratch/course/2025w300106/filimonova/results/annotations
+
+# tax_scope auto will annotate according to closest taxonomical
+#tax_scope_mode narrowest - narrow down auto scope to most relevant
+# --data_dir comes pre-specified
