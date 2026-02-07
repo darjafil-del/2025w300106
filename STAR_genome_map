@@ -9,8 +9,21 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=daria.filimonova@univie.ac.at
 
+### ENV
+
 module load STAR
 module list
 
-STAR --runThreadN 16 --genomeDir /lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/Nv2genome_STAR --readFilesIn /lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/trimmomatic/result/SRR23260644_1P.fastq /lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/trimmomatic/result/SRR23260644_2P.fastq --outFileNamePrefix /lisc/data/scratch/course/2025w300106/filimonova/results/map/SRR23260644_trimmed --outSAMstrandField intronMotif --outSAMtype BAM SortedByCoordinate
+### VARIABLES
+genome ='/lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/Nv2genome_STAR'
+prefix = '/lisc/data/scratch/course/2025w300106/filimonova/results/map/SRR23260644_trimmed`´
 
+### EXECUTION
+
+STAR --runThreadN 16 --genomeDir $genome --readFilesIn /lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/trimmomatic/result/SRR23260644_1P.fastq /lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/trimmomatic/result/SRR23260644_2P.fastq --outFileNamePrefix $prefix --outSAMstrandField intronMotif --outSAMtype BAM SortedByCoordinate
+
+###Comments 
+# STAR maps our (in this case, filtered and trimmed) reads to reference genome
+# --readFilesIn: our library is paired end -> 2 read files, no comma separation (that´s for multiple file lists) 
+# --outSAMstrandField: I do not know whether the library is stranded or not -> the algorithm will guess based on intron splice motifs
+# --outSAMtype BAM SortedByCoordinate: Default, needs to be sorted to view in IGV and use further downstream tools
