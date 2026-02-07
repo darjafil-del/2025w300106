@@ -15,6 +15,14 @@ module list
 
 stringtie -p 4 -m 10 -v -i -l -o GeneModelsGeneratedStringTie -j 5 -g 200 -N --nasc ./results/map/SRR23260644_trimmedAligned.sortedByCoord.filtered_2.out.bam 
 
-# changed -m  minimal lenght from 30 to 10 (short reads) 
+### Comments
+# Generating gene models using Stringtie
+# changed -m  minimal lenght from 30 to 10 (short reads because nascent RNA library) 
 # --nasc for nascent transcipts
 # -N for non-polyA RNA
+# -i 	keep transcripts with predicted unsplices introns (our rnas are nascent. also we do not want to remove lncRNA or rely too much on prediction?)
+# -j 5 Only keep splice junctions that are supported by at least 5 reads (Huan's preference)
+# -g 200 minimal locus separation distance (Huan´s preference) 
+# -p threads (4)
+# -v verbose
+# -l label (output prefix) ???
