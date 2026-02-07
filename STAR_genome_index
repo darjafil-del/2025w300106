@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name=STAR
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=20G
+#SBATCH --time=12:00:00
+#SBATCH --output=/lisc/data/scratch/course/2025w300106/filimonova/logs/STAR.%j.log
+#SBATCH --error=/lisc/data/scratch/course/2025w300106/filimonova/logs/STAR.%j.err
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=daria.filimonova@univie.ac.at
+
+### ENVIRONMENT
+module load STAR
+module list
+
+### VARIABLES
+
+genome = '/lisc/data/scratch/course/2025w300106/filimonova/jmontebegro/Nv2_wnt4_pcna_fluo.fasta'
+
+### EXECUTION
+
+STAR --runMode genomeGenerate --runThreadN 4 --genomeDir Nv2genome_STAR --genomeFastaFiles $genome --genomeSAindexNbases 13
+
+### SHORT DESCRIPTION
+# generates genome indexes for downstream applications i.e. read mapping
+# Our genome is small, so STAR automatically adjusts SAindexNbases from default 14 to 13. (log2(GenomeLength)/2 - 1), our genome is 250 Mb
