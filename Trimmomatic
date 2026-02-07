@@ -9,9 +9,14 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=daria.filimonova@univie.ac.at
 
-#trimming the reads for better quality/remove adapters
-
+cd /lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/trimmomatic
 module load Trimmomatic/0.40-Java-17
 
 trimmomatic PE -threads 4 -summary ./summary/SRR23260644_summary.txt -baseout ./result/SRR23260644 ../SRR23260644_1.fastq ../SRR23260644_2.fastq ILLUMINACLIP:trim_adapters.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:20
 
+### Comments
+# trimming the reads for better quality, removing leftover adapters
+# -baseout - location and prefix for output files
+# using ILLUMINACLIP because we saw Illumina adapter leftovers in fastqc
+# SLIDINGWINDOW: sliding window approach to remove low quality reads, using default settings
+# MINLEN: srorter than the default, because our nascent RNA library has very short reads -> we keep everything over 20 bp
