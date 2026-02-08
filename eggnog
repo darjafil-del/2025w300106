@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=featureCounts
+#SBATCH --job-name=eggnog
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=32G
@@ -17,11 +17,17 @@ module list
 
 ### Variables
 proteins='/lisc/data/scratch/course/2025w300106/filimonova/jmontenegro/Nv2_proteins.fasta'
- 
+output = '/lisc/data/scratch/course/2025w300106/filimonova/results/annotations/'
+
 ### EXECUTION
 
-emapper.py -i $proteins --cpu 16 --itype proteins --go_evidence experimental -m diamond --excel -o eggnog_annot --override --output_dir /lisc/data/scratch/course/2025w300106/filimonova/results/annotations
+emapper.py -i $proteins --cpu 16 --itype proteins --go_evidence experimental -m diamond --excel -o eggnog_annot --override --output_dir $output
 
-# tax_scope auto will annotate according to closest taxonomical
-#tax_scope_mode narrowest - narrow down auto scope to most relevant
-# --data_dir comes pre-specified
+### Comments
+# Assigning functional annotations to predicted proteins
+# tax_scope auto: will annotate according to closest taxonomical group(s) (default)
+#tax_scope_mode narrowest: - narrow down auto scope to most relevant ones (we´re fine without, but could try)
+# --data_dir: comes pre-specified
+# --go_evidence experimental: self-explanatory
+# diamond: hmmer is a better option but computationally heavy and needs pre-processing steps (profiles etc)
+# --override: ran into problems because of aborted run generating temporary files
