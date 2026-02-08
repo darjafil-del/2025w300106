@@ -8,9 +8,10 @@ Contents of repository:
 3 *Trimmomatic* RNA-seq read trimming 
 4 *STAR_genome map* Read mapping to reference genome
 5 *Subread* Quality control of read assignment 
-6 *Stringtie* predicting gene models
-7 *eggnog* Functional gene annotation of predicted models
-8 *CellRanger* Creating count matrix for single-cell RNA seq, compartible with 10XGenomics formats and Seurat
+6 *Stringtie* predicting gene models for working with non-model organisms without good genome 
+7 *Subread_2* Quality control of Stringtie read assignment
+8 *eggnog* Functional gene annotation of predicted gene models
+9 *CellRanger* Creating count matrix for single-cell RNA seq, compartible with 10XGenomics formats and Seurat
 
 Notes on workflow: Initially worked on latest Nematostella genome from our lab Nv2_wnt4_pcna_fluo and this RNA-seq dataset: SRR23260644. Later (for Stringtie and EGGnOG) switched to another Nematostella dataset from Ina, since the nascent RNA reads in SRR23260644  were very short and could not be properly mapped and annotated.
 
