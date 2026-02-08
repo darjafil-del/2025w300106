@@ -9,8 +9,6 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=daria.filimonova@univie.ac.at
 
-#checking the quality of read assignment with stringtie (previous step) as if we don´t have reference genome
-
 ### ENVIRONMENT
 module load Subread
 module list
@@ -24,7 +22,10 @@ aligned_reads="/lisc/data/scratch/course/2025w300106/filimonova/fromina_for_feat
 
 featureCounts -a $genemodels -t exon -g gene_id -s 2 --primary -T 4 -o ./results/fromina_check_annot.counts_prim_s2.tsv $aligned_reads
 
-# for some reason my reads are not paired (need to look up dataset) so i´m removing -p
-# count only primary alignments (avoid multimappers)
-# i hypothesise the library is reverse stranded until proven othervise
+###Comments
+#checking the quality of read assignment with stringtie (previous step) as if we don´t have reference genome
+
+# -p for some reason my reads are not paired (need to look up dataset that I took from ina if the library is single-end, since previous reads were too short) so i´m removing -p
+#  --primary count only primary alignments (avoid multimappers)
+# -s 2 hypothesise the library is reverse stranded until proven othervise
 
