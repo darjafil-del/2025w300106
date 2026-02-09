@@ -1,7 +1,8 @@
 This is a quick backup on non-integrated notes from Alison's class
 
+#data scaling#
 scale.data matrix normalises by gene, after data matrix normalizes by gene expression per cell
-scale.data is very heavy and only run on genes of interest
+!scale.data is very heavy and only run on genes of interest
 data1@ gives you all associated layers as options, i.e. data1@assays$RNA@cells
 
 # Data integration #
