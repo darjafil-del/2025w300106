@@ -14,8 +14,7 @@ module load Subread
 module list
 
 ### VARIABLES
-#genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/GeneModelsGeneratedStringTie.gtf" forgot to limit to multi-exon
-genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/filtered_gene_models.gtf"
+genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/filtered_gene_models.gtf" #new StringTie on Ina´s data
 aligned_reads="/lisc/data/scratch/course/2025w300106/filimonova/fromina_for_features/filtered.bam"
 
 ### EXECUTION
