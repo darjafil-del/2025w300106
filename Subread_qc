@@ -14,8 +14,8 @@ module load Subread
 module list
 
 ### VARIABLES
-genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/GeneModelsGeneratedStringTie.gtf" #forgot to limit to multi-exon
-#genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/filtered_gene_models.gtf" those for sanity checking if mine are too short to map
+genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/GeneModelsGeneratedStringTie_new.gtf" 
+#genemodels="/lisc/data/scratch/course/2025w300106/filimonova/results/map/filtered_gene_models.gtf" those for Subread_2 when I work with Ina's data
 aligned_reads="/lisc/data/scratch/course/2025w300106/filimonova/results/map/SRR23260644_trimmedAligned.sortedByCoord.filtered_2.out.bam"
 
 ### EXECUTION
@@ -23,7 +23,6 @@ aligned_reads="/lisc/data/scratch/course/2025w300106/filimonova/results/map/SRR2
 featureCounts -a $genemodels -t exon -g gene_id -s 1 -p --primary -T 4 -o ./results/featurecount_SRR23260644.tsv $aligned_reads
 
 ### Comments
-# QC for my StringTie results
+# QC for my StringTie results (successfully assigned 21.3% ...repeating the process with different data)
 # -s 1: PRO-seq libraries are normally forward-stranded
 # -p: my reads are paired
-# my mapped reads are 0% and I unfortunately could not find out why. Switching to other dataset because it was very short anyway.
