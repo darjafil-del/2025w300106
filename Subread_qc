@@ -26,3 +26,4 @@ featureCounts -a $genemodels -t exon -g gene_id -s 1 -p --primary -T 4 -o ./resu
 # QC for my StringTie results
 # -s 1: PRO-seq libraries are normally forward-stranded
 # -p: my reads are paired
+# my mapped reads are 0% and I unfortunately could not find out why. Switching to other dataset because it was very short anyway.
