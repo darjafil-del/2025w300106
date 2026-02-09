@@ -9,9 +9,12 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=daria.filimonova@univie.ac.at
 
-
+## ENVIRONMENT
+cd /lisc/data/scratch/course/2025w300106/filimonova
 module load StringTie
 module list
+
+### EXECUTION
 
 stringtie -p 4 -m 10 -v -i -l -o GeneModelsGeneratedStringTie -j 5 -g 200 -N --nasc ./results/map/SRR23260644_trimmedAligned.sortedByCoord.filtered_2.out.bam 
 
