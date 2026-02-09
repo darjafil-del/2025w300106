@@ -1,4 +1,13 @@
+This is a quick backup on non-integrated notes from Alison's class
+
 scale.data matrix normalises by gene, after data matrix normalizes by gene expression per cell
 scale.data is very heavy and only run on genes of interest
-
 data1@ gives you all associated layers as options, i.e. data1@assays$RNA@cells
+
+# Data integration #
+We normalize and scale data separately - in this case, they do not cluster by sample (at least, do it less)
+Ways to integrateSeurat pipeline: SCT transform. Modify/infer underlying data to look for connectivityBidirectional PCA or correlational analysis to create "anchors" between data. Then applying a correction vector to our data.Encouraged by Seurat but not widely accepted by community.
+Alternative approaches:
+-Liger. Aligns nearest neighbor graph. Similar pairings come into alignment, then used for UMAP Presently incompartible w Seurat cluster :)
+- Harmony. Aligning principal components then using them. Alison's go-to.Note: HarmonyTS in Python and Harmony in R are two different packages :)
+###FeatureScatter(gene1, gene2)
